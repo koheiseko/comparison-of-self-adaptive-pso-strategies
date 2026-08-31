@@ -106,6 +106,75 @@ def _calculate_wilcoxon_holm(matrix: pd.DataFrame) -> pd.DataFrame:
         drop=True
     )
 
+def _friedman_permutation_pvalue(
+    ranks: np.ndarray,
+    observed_statistic: float,
+    n_resamples: int,
+    random_state: int | None,
+) -> float:
+    """Estima o valor-p por permutações internas a cada bloco."""
+    if n_resamples < 1:
+        raise ValueError("n_resamples deve ser maior que zero.")
+
+    rng = np.random.default_rng(random_state)
+    n_blocks, n_algorithms = ranks.shape
+    denominator = n_blocks * n_algorithms * (n_algorithms + 1)
+    observed_without_tie_correction = (
+        12.0 / denominator * np.sum(ranks.sum(axis=0) ** 2)
+        - 3.0 * n_blocks * (n_algorithms + 1)
+    )
+    tie_correction = (
+        observed_statistic / observed_without_tie_correction
+        if observed_without_tie_correction > 0
+        else 1.0
+    )
+    extreme = 0
+
+    for start in range(0, n_resamples, 10_000):
+        batch_size = min(10_000, n_resamples - start)
+        rank_sums = np.zeros((batch_size, n_algorithms))
+
+        for row in ranks:
+            permutations = np.argsort(
+                rng.random((batch_size, n_algorithms)),
+                axis=1,
+            )
+            rank_sums += row[permutations]
+
+        statistics = (
+            12.0 / denominator * np.sum(rank_sums**2, axis=1)
+            - 3.0 * n_blocks * (n_algorithms + 1)
+        )
+        statistics *= tie_correction
+        extreme += np.count_nonzero(
+            statistics >= observed_statistic - 1e-12
+        )
+
+    return float((extreme + 1) / (n_resamples + 1))
+
+
+def friedman_test(
+    df: pd.DataFrame,
+    n_resamples: int = 100_000,
+    random_state: int | None = 0,
+) -> tuple[float, float]:
+    """Executa o teste de Friedman com valor-p por permutação."""
+    matrix = _build_performance_matrix(df)
+    values = matrix.to_numpy(dtype=float)
+    ranks = np.vstack([
+        stats.rankdata(row, method="average")
+        for row in values
+    ])
+
+    result = stats.friedmanchisquare(*values.T)
+    statistic = float(result.statistic)
+    p_value = _friedman_permutation_pvalue(
+        ranks,
+        statistic,
+        n_resamples,
+        random_state,
+    )
+    return statistic, p_value
 
 def create_wilcoxon_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """Retorna a tabela de Wilcoxon–Holm como DataFrame."""
