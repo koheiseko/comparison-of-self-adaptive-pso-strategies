@@ -1,0 +1,154 @@
+\begin{table}[!htbp]
+    \centering
+    \caption{Comparações pareadas pelo teste de Wilcoxon com correção de Holm.}
+    \label{tab:wilcoxon_holm}
+    
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{lcccccc}
+            \toprule
+            \textbf{Comparação}
+            & \textbf{$W$}
+            & \textbf{$p$}
+            & \textbf{$p_{\mathrm{Holm}}$}
+            & \textbf{$|r_{\mathrm{rb}}|$}
+            & \textbf{Favorece}
+            & \textbf{Significativo} \\
+            \midrule
+            
+            PSO $\times$ PSO-TVAC
+            & 0
+            & $1{,}49 \times 10^{-8}$
+            & $2{,}24 \times 10^{-7}$
+            & 1{,}000
+            & PSO-TVAC
+            & \textbf{Sim} \\
+            
+            PSO $\times$ APSO
+            & 0
+            & $1{,}49 \times 10^{-8}$
+            & $2{,}24 \times 10^{-7}$
+            & 1{,}000
+            & APSO
+            & \textbf{Sim} \\
+            
+            PSO-TVAC $\times$ APSO-VI
+            & 0
+            & $1{,}49 \times 10^{-8}$
+            & $2{,}24 \times 10^{-7}$
+            & 1{,}000
+            & PSO-TVAC
+            & \textbf{Sim} \\
+            
+            PSO-TVAC $\times$ UAPSO-A
+            & 0
+            & $1{,}49 \times 10^{-8}$
+            & $2{,}24 \times 10^{-7}$
+            & 1{,}000
+            & PSO-TVAC
+            & \textbf{Sim} \\
+            
+            APSO $\times$ UAPSO-A
+            & 0
+            & $1{,}49 \times 10^{-8}$
+            & $2{,}24 \times 10^{-7}$
+            & 1{,}000
+            & APSO
+            & \textbf{Sim} \\
+            
+            APSO-VI $\times$ UAPSO-A
+            & 0
+            & $1{,}49 \times 10^{-8}$
+            & $2{,}24 \times 10^{-7}$
+            & 1{,}000
+            & APSO-VI
+            & \textbf{Sim} \\
+            
+            APSO $\times$ APSO-VI
+            & 2
+            & $4{,}47 \times 10^{-8}$
+            & $4{,}02 \times 10^{-7}$
+            & 0{,}989
+            & APSO
+            & \textbf{Sim} \\
+            
+            PSO-LVIW $\times$ UAPSO-A
+            & 20
+            & $5{,}53 \times 10^{-6}$
+            & $4{,}42 \times 10^{-5}$
+            & 0{,}894
+            & PSO-LVIW
+            & \textbf{Sim} \\
+            
+            PSO-LVIW $\times$ PSO-TVAC
+            & 24
+            & $1{,}14 \times 10^{-5}$
+            & $7{,}95 \times 10^{-5}$
+            & 0{,}873
+            & PSO-TVAC
+            & \textbf{Sim} \\
+            
+            PSO-LVIW $\times$ APSO
+            & 38
+            & $9{,}60 \times 10^{-5}$
+            & $5{,}76 \times 10^{-4}$
+            & 0{,}799
+            & APSO
+            & \textbf{Sim} \\
+            
+            PSO $\times$ UAPSO-A
+            & 58
+            & $1{,}02 \times 10^{-3}$
+            & $5{,}10 \times 10^{-3}$
+            & 0{,}693
+            & PSO
+            & \textbf{Sim} \\
+            
+            PSO-LVIW $\times$ APSO-VI
+            & 64
+            & $1{,}86 \times 10^{-3}$
+            & $7{,}43 \times 10^{-3}$
+            & 0{,}661
+            & PSO-LVIW
+            & \textbf{Sim} \\
+            
+            PSO-TVAC $\times$ APSO
+            & 66
+            & $2{,}25 \times 10^{-3}$
+            & $7{,}43 \times 10^{-3}$
+            & 0{,}651
+            & APSO
+            & \textbf{Sim} \\
+            
+            PSO $\times$ PSO-LVIW
+            & 145
+            & 0{,}301
+            & 0{,}602
+            & 0{,}233
+            & PSO-LVIW
+            & Não \\
+            
+            PSO $\times$ APSO-VI
+            & 171
+            & 0{,}679
+            & 0{,}679
+            & 0{,}095
+            & PSO
+            & Não \\
+            
+            \bottomrule
+        \end{tabular}%
+    }
+    
+    \vspace{0.4em}
+    
+    \begin{minipage}{\textwidth}
+        \footnotesize
+        \textit{Nota:} $W$ representa a estatística do teste de Wilcoxon;
+        $p$ é o valor não corrigido; $p_{\mathrm{Holm}}$ é o valor
+        ajustado para comparações múltiplas; e
+        $|r_{\mathrm{rb}}|$ representa o módulo do tamanho de efeito
+        rank-biserial. A decisão de significância considera
+        $p_{\mathrm{Holm}} < 0{,}05$. A coluna ``Favorece'' indica
+        apenas a direção do efeito.
+    \end{minipage}
+\end{table}

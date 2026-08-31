@@ -1,0 +1,39 @@
+\begin{table*}[!t]
+    \centering
+    \caption{Tempo mediano e pico mediano de memória por dimensão.}
+    \label{tab:tempo_memoria_dimensao}
+
+    \scriptsize
+    \renewcommand{\arraystretch}{0.85}
+    \setlength{\tabcolsep}{4pt}
+
+    \begin{tabular*}{\textwidth}{
+        @{\extracolsep{\fill}}
+        lccccc@{\hspace{2pt}}c
+        @{}
+    }
+        \toprule
+        & \multicolumn{3}{c}{\textbf{Tempo mediano (s)}}
+        & \multicolumn{3}{c}{\textbf{Pico de memória (MB)}} \\
+
+        \cmidrule(lr){2-4}
+        \cmidrule(lr){5-7}
+
+        \textbf{Algoritmo}
+        & \textbf{30D}
+        & \textbf{50D}
+        & \textbf{100D}
+        & \textbf{30D}
+        & \textbf{50D}
+        & \textbf{100D} \\
+
+        \midrule
+        PSO      & 60,8 & 114,7 & 296,4 & 0,82 & 1,34 & 2,67 \\
+        PSO-LVIW & 60,2 & 114,7 & 296,6 & 1,06 & 1,77 & 3,57 \\
+        PSO-TVAC & 60,0 & 114,2 & 297,2 & 1,62 & 2,94 & 5,44 \\
+        APSO     & 66,0 & 125,6 & 343,4 & 2,87 & 4,77 & 9,44 \\
+        APSO-VI  & 60,9 & 113,9 & 299,4 & 1,09 & 1,78 & 3,54 \\
+        UAPSO-A  & 62,9 & 116,5 & 302,1 & 1,33 & 2,12 & 4,14 \\
+        \bottomrule
+    \end{tabular*}
+\end{table*}
